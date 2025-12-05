@@ -1,0 +1,9 @@
+{
+  "name": "studyswap",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "db:test": "node tests/db-test.js"
+  },
+  "dependencies": {}
+}

@@ -2,7 +2,7 @@
 
 **Track:** Thin UI
 
-**Product (one line):** StudySwap is a collaborative study platform where students “pay in” with their own flashcards to unlock a shared pool of study material. Instead of passively consuming someone else’s work, each student must contribute at least 10 flashcards or questions before they can access decks created by others.
+**Product:** StudySwap is a collaborative study platform where students “pay in” with their own flashcards to unlock a shared pool of study material. Instead of passively consuming someone else’s work, each student must contribute at least 10 flashcards or questions before they can access decks created by others.
 
 **User:** StudySwap is designed for college students preparing for quizzes, midterms, and finals. It works especially well for concept-heavy courses where flashcards are useful.
 

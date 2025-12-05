@@ -81,3 +81,13 @@ Below are a few tiny curl examples. See docs/api_endpoints.md for full details.
 - docs/dod-sprint4.md  
 
 Project planning and tasks are tracked on the GitHub Project board linked from the repository homepage.
+
+---
+## Project Board
+
+All project planning (Sprints 2–4) is tracked on a single GitHub Project board:
+
+- Board: https://github.com/YOUR-USER/YOUR-REPO/projects/1  
+- Filter for Sprint 3 issues: `label:sprint-3`  
+- Filter for Sprint 4 issues: `label:sprint-4`
+

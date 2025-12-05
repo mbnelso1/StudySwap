@@ -87,7 +87,7 @@ Project planning and tasks are tracked on the GitHub Project board linked from t
 
 All project planning (Sprints 2–4) is tracked on a single GitHub Project board:
 
-- Board: https://github.com/YOUR-USER/YOUR-REPO/projects/1  
+- Board: https://github.com/users/mbnelso1/projects/3/views/1
 - Filter for Sprint 3 issues: `label:sprint-3`  
 - Filter for Sprint 4 issues: `label:sprint-4`
 

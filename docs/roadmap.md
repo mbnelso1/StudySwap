@@ -64,18 +64,16 @@ Sprint 4 extends the MVP with additional features, relational endpoints, and pol
     * `userId`, `deckId`, `cardId`, `correct`, `timestamp`.
     * Optional: which option was selected.
 
+* **Live Quiz / Kiosk Mode (Phones as Controllers)**
+  * A “host” view running on a laptop or large display shows the current question and answer options.
+  * One or more phone clients join the session and:
+    * Submit new flashcards (using the same card/deck endpoints).
+    * Tap their answer choices during a live quiz.
+  * A small controller layer (inspired by the WebTouch SDK) coordinates which client is host vs player while the StudySwap API remains the single source of truth.
+
 * **Client Polish**
   * Thin UI with clear states:
     * Not logged in.
     * Logged in but below contribution threshold (prompt to add cards).
     * Logged in with full access (browse & study mode with multiple-choice questions).
   * Input validation and visible error messages.
-
-* **Integration / Documentation**
-  * Updated `docs/api_endpoints.md` with any new endpoints.
-  * Final `README.md`:
-    * Description of StudySwap.
-    * Instructions to set up and run the server.
-    * Example curl / fetch usage.
-    * Demo GIF of the thin UI including multiple-choice answer/feedback flow.
-

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>StudySwap</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 1.5rem;
+      background: #f5f5f7;
+      color: #111827;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 0.75rem;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    section {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    input, textarea, button, select {
+      font: inherit;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.45rem;
+      border: 1px solid #d1d5db;
+      margin-bottom: 0.5rem;
+    }
+
+    textarea {
+      min-height: 3rem;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.9rem;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #6b7280;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    #error-bar {
+      margin-bottom: 1rem;
+      padding: 0.6rem 0.8rem;
+      border-radius: 0.6rem;
+      background: #fee2e2;
+      color: #991b1b;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    #login-section,
+    #app-section {
+      display: none;
+    }
+
+    #deck-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.25rem 0 0;
+    }
+
+    #deck-list li {
+      padding: 0.35rem 0.5rem;
+      border-radius: 0.45rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #deck-list li:hover {
+      background: #f3f4f6;
+    }
+
+    #deck-list li.active {
+      background: #e5f0ff;
+    }
+
+    .badge {
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 0.25rem 0.35rem;
+      text-align: left;
+    }
+
+    th {
+      background: #f9fafb;
+    }
+
+    .option-button {
+      margin: 0.2rem 0.1rem;
+      display: inline-block;
+    }
+
+    #study-result {
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    #study-result.correct {
+      color: #16a34a;
+    }
+
+    #study-result.incorrect {
+      color: #dc2626;
+    }
+
+    .small-text {
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>StudySwap</h1>
+    <div id="error-bar"></div>
+
+    <!-- LOGIN -->
+    <section id="login-section">
+      <h2>Log in</h2>
+      <p class="small-text">
+        Enter a display name to start. This is stored in a server-side session cookie.
+      </p>
+      <form id="login-form">
+        <label for="login-name">Name</label>
+        <input id="login-name" type="text" autocomplete="off" required />
+        <button type="submit">Log in</button>
+      </form>
+    </section>
+
+    <!-- APP -->
+    <section id="app-section">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <h2 id="welcome-heading"></h2>
+          <p id="user-status" class="small-text"></p>
+        </div>
+        <button id="logout-button" class="secondary" type="button">Log out</button>
+      </div>
+
+      <!-- DECKS -->
+      <section>
+        <h3>Decks</h3>
+
+        <form id="deck-form">
+          <label for="deck-title">Deck title</label>
+          <input id="deck-title" type="text" required />
+
+          <label for="deck-course">Course code (optional)</label>
+          <input id="deck-course" type="text" />
+
+          <label for="deck-description">Description (optional)</label>
+          <textarea id="deck-description"></textarea>
+
+          <button type="submit">Create deck</button>
+        </form>
+
+        <h4 style="margin-top:1rem;">Your decks</h4>
+        <ul id="deck-list"></ul>
+      </section>
+
+      <!-- CURRENT DECK / CARDS -->
+      <section>
+        <h3 id="current-deck-heading">No deck selected</h3>
+        <p id="current-deck-subheading" class="small-text"></p>
+
+        <div id="deck-content" style="display:none;">
+          <h4>Cards in this deck</h4>
+
+          <form id="card-form">
+            <label for="card-front">Question / front</label>
+            <textarea id="card-front" required></textarea>
+
+            <label for="card-back">Answer / back</label>
+            <textarea id="card-back" required></textarea>
+
+            <button type="submit">Add card</button>
+          </form>
+
+          <table id="card-table">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Answer</th>
+              </tr>
+            </thead>
+            <tbody id="card-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- STUDY -->
+      <section>
+        <h3>Study this deck</h3>
+        <p class="small-text">
+          Fetch a multiple-choice question from the server and answer it.
+        </p>
+
+        <button id="study-next-button" type="button">Get next question</button>
+
+        <div id="study-area" style="margin-top:0.75rem; display:none;">
+          <h4 id="study-question"></h4>
+          <div id="study-options"></div>
+          <div id="study-result"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

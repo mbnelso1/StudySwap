@@ -1,0 +1,94 @@
+{
+  "users": [
+    {
+      "id": "2c3685bb",
+      "createdAt": "2025-12-08T17:51:43.050Z",
+      "updatedAt": "2025-12-08T18:20:09.076Z",
+      "name": "Melita",
+      "contributedCount": 2
+    },
+    {
+      "id": "9a1eb90f",
+      "createdAt": "2025-12-08T18:28:29.265Z",
+      "updatedAt": "2025-12-08T18:29:34.591Z",
+      "name": "melbnelson",
+      "contributedCount": 3
+    }
+  ],
+  "decks": [
+    {
+      "id": "a10a007b",
+      "createdAt": "2025-12-08T17:58:24.564Z",
+      "updatedAt": "2025-12-08T17:58:24.564Z",
+      "title": "CSCI 4208 — HTTP & REST",
+      "courseCode": "CSCI 4208",
+      "description": "Requests, responses, and REST principles",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "e16412b8",
+      "createdAt": "2025-12-08T18:20:09.043Z",
+      "updatedAt": "2025-12-08T18:20:09.043Z",
+      "title": "CSCI 4208 — HTTP & REST",
+      "courseCode": "CSCI 4208",
+      "description": "Requests, responses, and REST principles",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "8a27fcc9",
+      "createdAt": "2025-12-08T18:28:43.339Z",
+      "updatedAt": "2025-12-08T18:28:43.339Z",
+      "title": "class1",
+      "courseCode": null,
+      "description": null,
+      "ownerUserId": "9a1eb90f"
+    }
+  ],
+  "cards": [
+    {
+      "id": "fd9cdc70",
+      "createdAt": "2025-12-08T18:05:38.523Z",
+      "updatedAt": "2025-12-08T18:05:38.523Z",
+      "deckId": "a10a007b",
+      "front": "What does HTTP stand for?",
+      "back": "Hypertext Transfer Protocol",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "fca45eb2",
+      "createdAt": "2025-12-08T18:20:09.074Z",
+      "updatedAt": "2025-12-08T18:20:09.074Z",
+      "deckId": "a10a007b",
+      "front": "What does HTTP stand for?",
+      "back": "Hypertext Transfer Protocol",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "c944d1ca",
+      "createdAt": "2025-12-08T18:29:09.466Z",
+      "updatedAt": "2025-12-08T18:29:09.466Z",
+      "deckId": "8a27fcc9",
+      "front": "what color is the sun",
+      "back": "yellow",
+      "ownerUserId": "9a1eb90f"
+    },
+    {
+      "id": "d3a56872",
+      "createdAt": "2025-12-08T18:29:20.196Z",
+      "updatedAt": "2025-12-08T18:29:20.196Z",
+      "deckId": "8a27fcc9",
+      "front": "what color is the sea?",
+      "back": "blue",
+      "ownerUserId": "9a1eb90f"
+    },
+    {
+      "id": "fb973414",
+      "createdAt": "2025-12-08T18:29:34.589Z",
+      "updatedAt": "2025-12-08T18:29:34.589Z",
+      "deckId": "8a27fcc9",
+      "front": "what color is grass",
+      "back": "green",
+      "ownerUserId": "9a1eb90f"
+    }
+  ]
+}

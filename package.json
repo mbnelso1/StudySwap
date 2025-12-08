@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "db:test": "node tests/db-test.js"
+    "db:test": "node tests/db-test.js",
+    "start": "node server.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-session": "^1.18.2"
+  }
 }

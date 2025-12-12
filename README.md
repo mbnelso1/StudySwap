@@ -6,11 +6,6 @@ StudySwap is a collaborative flashcard app where students must contribute at lea
 
 ---
 
-## Screenshots / Demo GIF
-
-> (Coming in Sprint 4)  
-
----
 
 ## How to Run
 

@@ -3,9 +3,9 @@
     {
       "id": "2c3685bb",
       "createdAt": "2025-12-08T17:51:43.050Z",
-      "updatedAt": "2025-12-08T18:20:09.076Z",
+      "updatedAt": "2025-12-10T19:21:56.911Z",
       "name": "Melita",
-      "contributedCount": 2
+      "contributedCount": 13
     },
     {
       "id": "9a1eb90f",
@@ -13,6 +13,27 @@
       "updatedAt": "2025-12-08T18:29:34.591Z",
       "name": "melbnelson",
       "contributedCount": 3
+    },
+    {
+      "id": "7fa99634",
+      "createdAt": "2025-12-10T23:31:33.674Z",
+      "updatedAt": "2025-12-10T23:31:33.674Z",
+      "name": "brad",
+      "contributedCount": 0
+    },
+    {
+      "id": "a00e7e8a",
+      "createdAt": "2025-12-11T00:06:55.215Z",
+      "updatedAt": "2025-12-11T00:06:55.215Z",
+      "name": "mel",
+      "contributedCount": 0
+    },
+    {
+      "id": "7245ca92",
+      "createdAt": "2025-12-11T00:15:47.303Z",
+      "updatedAt": "2025-12-11T00:15:47.303Z",
+      "name": "robert",
+      "contributedCount": 0
     }
   ],
   "decks": [
@@ -42,6 +63,15 @@
       "courseCode": null,
       "description": null,
       "ownerUserId": "9a1eb90f"
+    },
+    {
+      "id": "4a88188e",
+      "createdAt": "2025-12-10T19:17:53.990Z",
+      "updatedAt": "2025-12-10T19:17:53.990Z",
+      "title": "class 1",
+      "courseCode": null,
+      "description": null,
+      "ownerUserId": "2c3685bb"
     }
   ],
   "cards": [
@@ -89,6 +119,105 @@
       "front": "what color is grass",
       "back": "green",
       "ownerUserId": "9a1eb90f"
+    },
+    {
+      "id": "6f5687a2",
+      "createdAt": "2025-12-10T19:18:10.190Z",
+      "updatedAt": "2025-12-10T19:18:10.190Z",
+      "deckId": "4a88188e",
+      "front": "What year is it",
+      "back": "2025",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "dff7f338",
+      "createdAt": "2025-12-10T19:18:24.411Z",
+      "updatedAt": "2025-12-10T19:18:24.411Z",
+      "deckId": "4a88188e",
+      "front": "What season is it",
+      "back": "winter",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "10218b95",
+      "createdAt": "2025-12-10T19:18:51.197Z",
+      "updatedAt": "2025-12-10T19:18:51.197Z",
+      "deckId": "4a88188e",
+      "front": "What month is it",
+      "back": "december",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "06bc4aae",
+      "createdAt": "2025-12-10T19:19:25.085Z",
+      "updatedAt": "2025-12-10T19:19:25.085Z",
+      "deckId": "4a88188e",
+      "front": "What color is the sky",
+      "back": "blue",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "de2015fa",
+      "createdAt": "2025-12-10T19:19:40.698Z",
+      "updatedAt": "2025-12-10T19:19:40.698Z",
+      "deckId": "4a88188e",
+      "front": "what color is the sun",
+      "back": "yellow",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "82718420",
+      "createdAt": "2025-12-10T19:20:03.037Z",
+      "updatedAt": "2025-12-10T19:20:03.037Z",
+      "deckId": "4a88188e",
+      "front": "What state are we in",
+      "back": "louisiana",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "32b33aab",
+      "createdAt": "2025-12-10T19:20:11.146Z",
+      "updatedAt": "2025-12-10T19:20:11.146Z",
+      "deckId": "4a88188e",
+      "front": "what city are we in",
+      "back": "new orleans",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "a2f2c06f",
+      "createdAt": "2025-12-10T19:20:36.050Z",
+      "updatedAt": "2025-12-10T19:20:36.050Z",
+      "deckId": "4a88188e",
+      "front": "What school are we currently in",
+      "back": "uno",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "f4ff91bb",
+      "createdAt": "2025-12-10T19:20:55.714Z",
+      "updatedAt": "2025-12-10T19:20:55.714Z",
+      "deckId": "4a88188e",
+      "front": "What lake are we closest to",
+      "back": "Lake Ponchatrain",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "07e99ae6",
+      "createdAt": "2025-12-10T19:21:10.465Z",
+      "updatedAt": "2025-12-10T19:21:10.465Z",
+      "deckId": "4a88188e",
+      "front": "What bridge crosses lake ponchatrain",
+      "back": "the causeway",
+      "ownerUserId": "2c3685bb"
+    },
+    {
+      "id": "fbc5eab0",
+      "createdAt": "2025-12-10T19:21:56.907Z",
+      "updatedAt": "2025-12-10T19:21:56.907Z",
+      "deckId": "4a88188e",
+      "front": "What stadium do the saints play in",
+      "back": "superdome",
+      "ownerUserId": "2c3685bb"
     }
   ]
 }

@@ -118,7 +118,7 @@ Returns the next multiple-choice question for the specified deck, including the 
     {
       "cardId": "c_555",
       "deckId": "d_101",
-      "prompt": "What is REST?",
+      "front": "What is REST?",
       "options": [
         "An architectural style using stateless HTTP and resource representations.",
         "A binary protocol for low-level device control.",
@@ -139,7 +139,7 @@ Submits the selected answer option for a specific card and returns whether it is
     curl -X POST http://localhost:3000/api/decks/d_101/study/c_555/answer \
       -H "Content-Type: application/json" \
       -d '{
-        "selectedAnswer":"A binary protocol for low-level device control."
+        "answer":"A binary protocol for low-level device control."
       }'
 
 **Example Response (200 OK):**

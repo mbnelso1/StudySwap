@@ -1,79 +1,169 @@
 # Roadmap — StudySwap
 
-## MVP (Sprint 3)
+StudySwap is built in four sprints. Each sprint adds a thin, testable slice on top of the previous one.
 
-The MVP (Sprint 3) delivers a vertical slice of StudySwap with at least one resource fully working end-to-end and the contribution gate enforced.
+---
 
-* **User Identification & Sessions**
-  * Simple login flow (e.g., provide a display name or handle).
-  * Session-based identification of the current user (`/api/me`).
+## Sprint 1 — Local Decks & Cards
 
-* **Core Resources (MVP Scope)**
-  * **Users**
-    * Track `id`, `name`, and `contributedCount`.
-  * **Decks**
-    * Create and list decks for a course/topic.
-  * **Cards**
-    * Add cards to a deck.
-    * List cards for a deck (subject to the contribution gate).
+**Goal:** basic StudySwap data model and a simple thin client.
 
-* **Contribution Gate**
-  * Server enforces “must contribute at least 10 cards”:
-    * Users below 10 contributed cards can only:
-      * View their own profile and decks.
-      * Create decks and submit cards.
-    * Users with 10+ cards can:
-      * Browse available decks.
-      * View and study cards in those decks.
+**Features**
 
-* **Study & Answering (MVP — Multiple Choice)**
-  * Basic multiple-choice study flow:
-    1. User chooses a deck to study.
-    2. Client requests the next question from the server.
-    3. Server selects a card in that deck and builds a multiple-choice question:
-       * One **correct** option based on that card’s `back`.
-       * Several **incorrect** options (distractors) pulled from the `back` values of other cards in the same deck.
-       * Options are shuffled before being returned.
-    4. Client shows the prompt (`front`) and the list of options.
-    5. User selects an option and submits it to the server.
-    6. Server checks whether the chosen option matches the correct answer and responds with:
-       * `correct: true/false`
-       * `correctAnswer` (the card’s `back`).
-       * `selectedAnswer` (what the user picked).
+- In-memory / file-backed “database” in `studyswap.json`.
+- Collections for:
+  - `users`
+  - `decks`
+  - `cards`
+- Thin client that can:
+  - Create a deck for a course.
+  - Add cards to a deck (front/back).
+  - List cards for a chosen deck.
 
-* **Error Handling & JSON Responses**
-  * Central error handler returning consistent JSON error shapes.
-  * Clear 4xx/5xx responses for invalid input, unauthorized access, or missing resources.
+**What this delivers**
 
-## Full Features (Sprint 4)
+- A single-user prototype where someone can make a deck and add flashcards.
+- No login yet; everything is effectively “ownerless”.
 
-Sprint 4 extends the MVP with additional features, relational endpoints, and polish.
+---
 
-* **Expanded Resource Features**
-  * CRUD (or soft delete) for decks and cards with validation.
-  * Search/filter decks by course code or keyword.
+## Sprint 2 — Sessions & Multi-User Data
 
-* **Relational Endpoints**
-  * `GET /api/users/:userId/decks` — list decks created by a specific user.
-  * `GET /api/decks/:deckId/cards` — list cards for a deck, with gate enforcement.
-  * `GET /api/me/cards` — list cards contributed by the current user.
+**Goal:** support multiple users and keep their data straight.
 
-* **Study Flow Enhancements**
-  * Endpoint to fetch the “next card” for a deck using some strategy (random, least recently seen, etc.).
-  * Record full review stats:
-    * `userId`, `deckId`, `cardId`, `correct`, `timestamp`.
-    * Optional: which option was selected.
+**Features**
 
-* **Live Quiz / Kiosk Mode (Phones as Controllers)**
-  * A “host” view running on a laptop or large display shows the current question and answer options.
-  * One or more phone clients join the session and:
-    * Submit new flashcards (using the same card/deck endpoints).
-    * Tap their answer choices during a live quiz.
-  * A small controller layer (inspired by the WebTouch SDK) coordinates which client is host vs player while the StudySwap API remains the single source of truth.
+- Session middleware and cookies.
+- Simple login endpoint:
+  - `POST /api/session/login` using a display name.
+  - `GET /api/me` to check who is logged in.
+- User model extended with:
+  - `id`
+  - `name`
+  - `contributedCount`
+- Deck + card APIs updated to respect the current user:
+  - Only logged-in users can create decks/cards.
+  - `contributedCount` increments when a user adds cards.
 
-* **Client Polish**
-  * Thin UI with clear states:
-    * Not logged in.
-    * Logged in but below contribution threshold (prompt to add cards).
-    * Logged in with full access (browse & study mode with multiple-choice questions).
-  * Input validation and visible error messages.
+**What this delivers**
+
+- Multiple users can log in from different browsers and contribute cards.
+- The app knows who added what, which is needed for the contribution gate later.
+
+---
+
+## Sprint 3 — MVP Vertical Slice (Study + Gate + Live Quiz)
+
+**Goal:** a full, end-to-end experience for one course, with the contribution requirement and a live quiz.
+
+### User Identification & Sessions
+
+- Simple login form in the app UI.
+- Session-based identity used for all `/api` calls that need a user.
+- `GET /api/me` used on page load to restore the current user.
+
+### Core Resources (MVP Scope)
+
+- **Users**
+  - Track `id`, `name`, `contributedCount`.
+  - Derive whether the user can study a deck based on contributions.
+- **Decks**
+  - Create and list course decks (e.g., “CSCI 4208 — HTTP & REST”).
+  - `GET /api/decks` returns decks plus `cardCount` and `canStudy`.
+- **Cards**
+  - `GET /api/decks/:deckId/cards` to view contributed cards.
+  - `POST /api/decks/:deckId/cards` to add new cards.
+
+### Contribution Gate
+
+- Each deck requires a minimum number of cards contributed per user (configurable).
+- App logic:
+  - If `contributedCount < threshold`, the deck is “locked for study”.
+  - Once threshold is met, `canStudy` becomes true and study mode unlocks.
+
+### Study Mode (Multiple-Choice API)
+
+- Shared study API used by both solo study and kiosk mode:
+  - `GET /api/decks/:deckId/study/next`
+    - Returns `{ deckId, cardId, front, options[] }`.
+  - `POST /api/decks/:deckId/study/:cardId/answer`
+    - Body: `{ "answer": "..." }`
+    - Response: `{ correct, correctAnswer, selectedAnswer }`.
+- The thin client calls these endpoints to:
+  - Show one question at a time.
+  - Render four answer choices.
+  - Give immediate feedback.
+
+### Live Quiz / Kiosk Mode (Phones as Controllers)
+
+- **Kiosk view** (`/kiosk`):
+  - Runs on a laptop/TV.
+  - Shows:
+    - Room code + QR link for controllers.
+    - Current deck.
+    - Current question and answer options (using the study API above).
+    - Scoreboard of players.
+
+- **Controller view** (`/controller`):
+  - Runs in mobile browsers.
+  - UI:
+    - Join game with a name.
+    - Deck selection dropdown for the host.
+    - Four “Option 1–4” answer buttons.
+  - Sends custom events to the kiosk over WebTouch:
+    - `quiz:join`
+    - `quiz:set_deck`
+    - `quiz:answer`
+    - `quiz:next_question`.
+  - Receives:
+    - `quiz:deck_list` (for host dropdown).
+    - `quiz:feedback` (correct / incorrect).
+
+- **WebTouch hub layer**:
+  - Attaches to the existing Socket.IO server.
+  - Manages rooms and forwards custom events.
+  - Kiosk uses the StudySwap REST API as the single source of truth; WebTouch only coordinates controllers.
+
+### Client Polish
+
+- Clear UI states:
+  - Not logged in → show login.
+  - Logged in but below contribution threshold → prompt to add cards.
+  - Logged in and allowed to study → show study/kiosk options.
+- Visible error messages when API calls fail (401, 404, etc.).
+
+---
+
+## Sprint 4 — Full Product & Polish
+
+**Goal:** refine the experience, add quality-of-life features, and document the final system.
+
+**Possible enhancements**
+
+- **Deck & user details**
+  - Per-deck contribution counts on the UI.
+  - Simple progress indicators (“You’ve answered X/Y questions”).
+- **Quiz features**
+  - Lock answers after a timer.
+  - Show correct answer and per-question stats on the kiosk.
+  - Better handling of reconnects and multiple hosts.
+- **UI improvements**
+  - Additional responsive tweaks for phones and projectors.
+  - Visual feedback on the controller when the question changes.
+- **Documentation**
+  - Final pass on:
+    - `pitch.md`
+    - `roadmap.md`
+    - `architecture_sketch.md`
+    - `api_endpoints.md`
+  - Screenshots or GIFs demonstrating:
+    - App login + contribution.
+    - Solo study view.
+    - Kiosk on a big screen plus controller on a phone.
+
+**What this delivers**
+
+- A clean, demo-ready StudySwap experience:
+  - Students contribute cards.
+  - They unlock decks and study with multiple-choice questions.
+  - Instructors can run a live quiz from the same data using the kiosk + controller setup.

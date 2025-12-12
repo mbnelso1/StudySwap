@@ -1,5 +1,13 @@
-# Sprint 3 — Definition of Done (MVP Vertical Slice)
-- [x] The API for at least one resource is fully functional (CRUD).
-- [x] Session management is working and can be demonstrated.
-- [x] The thin client can perform a full CRUD operation against the API.
-- [x] Evidence: The Sprint 3 project board filter link shows all MVP tasks as "Done."
+# Sprint 3 — Definition of Done 
+- [x] Session + profile
+- [x] Deck list with contribution gate
+- [x] Card contribution flow
+- [x] Solo study mode
+- [x] Session enforcement
+- [x] Data integrity
+- [x] The app view uses a single, simple page (`index.html` + `app.js`).
+- [x] All primary flows are reachable:
+- [x] Text and labels match the terminology used in the pitch and roadmap.
+- [x] `api_endpoints.md` documents all app-level APIs used in the MVP.
+- [x] `architecture_sketch.md` explains the app-view request lifecycle.
+- [x] This DoD reflects the actual state of Sprint 3 and is frozen once Sprint 4 begins.

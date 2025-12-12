@@ -26,9 +26,17 @@ From the project root:
     npm install
     npm start
 
-Then open the client in your browser:
+To open the client in your browser:
 
-- http://localhost:3000/
+- http://youripaddress:3000/
+
+To open the kiosk in your browser:
+
+- http://youripaddress:3000/kiosk
+
+To open the controller:
+
+- Scan qr code on your phone or copy the URL into your browser
 
 ---
 

@@ -1,4 +1,3 @@
-// public/app.js
 
 const state = {
   user: null,
